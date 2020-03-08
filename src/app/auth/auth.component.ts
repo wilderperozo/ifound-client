@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  validate(email) {
+    this.authService.validate(email).subscribe(
+      (user) => {
+        console.log('show sign in screen ', user);
+      },
+      error => {
+        if (error.status === 404) {
+          console.log('show sign up screen');
+        }
+      }
+    );
   }
 
 }
