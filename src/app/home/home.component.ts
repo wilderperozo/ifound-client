@@ -26,11 +26,7 @@ export class HomeComponent implements OnInit {
 
   verifyHomePage(route?) {
     const validateRoute = route ? route : this.route;
-    if (validateRoute.url === '/') {
-      this.showHomePage = true;
-    } else {
-      this.showHomePage = false;
-    }
+    this.showHomePage = validateRoute.url === '/';
   }
 
 }
