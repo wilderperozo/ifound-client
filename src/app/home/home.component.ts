@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  showHomePage = false;
+
+  constructor(private route: Router) {
+  }
 
   ngOnInit(): void {
+    this.verifyHomePage();
+    this.validateHomePage();
+  }
+
+  validateHomePage() {
+    this.route.events.subscribe(route => {
+      this.verifyHomePage(route);
+    });
+  }
+
+  verifyHomePage(route?) {
+    const validateRoute = route ? route : this.route;
+    if (validateRoute.url === '/') {
+      this.showHomePage = true;
+    } else {
+      this.showHomePage = false;
+    }
   }
 
 }

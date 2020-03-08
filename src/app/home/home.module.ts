@@ -5,6 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeHeaderComponent} from './components/home-header/home-header.component';
 import {HttpClientModule} from '@angular/common/http';
 import {PostsService} from './services/posts.service';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 const route: Routes = [
   {
@@ -18,7 +19,7 @@ const route: Routes = [
 
 
 @NgModule({
-  declarations: [HomeComponent, HomeHeaderComponent],
+  declarations: [HomeComponent, HomeHeaderComponent, WelcomeComponent],
   imports: [
     CommonModule,
     HttpClientModule,
